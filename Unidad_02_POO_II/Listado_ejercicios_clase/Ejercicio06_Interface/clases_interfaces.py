@@ -26,6 +26,8 @@ class IGestionNumeros(ABC):
 class ListaNumeros(IGestionNumeros):
 
     def __init__(self, numeros):
+        if type(numeros) != list:
+            raise ValueError("El parámetro debe ser una lista")
         self.numeros = numeros
 
     def nuevo_numero(self, numero):
@@ -44,16 +46,22 @@ class ListaNumeros(IGestionNumeros):
 class TuplaNumeros(IGestionNumeros):
 
     def __init__(self, numeros):
+        if type(numeros) != tuple:
+            raise ValueError("El parámetro debe ser una tupla")
         self.numeros = numeros
 
     def nuevo_numero(self, numero):
-        self.numeros += (numero,)
+        self.numeros += (
+            numero,
+        )  # Añadir un elemento a una tupla. Concatenar con otra tupla
 
     def buscar_numero(self, valor):
         return True if valor in self.numeros else False
 
     def ordenar(self):
-        self.numeros = tuple(sorted(self.numeros))
+        self.numeros = tuple(
+            sorted(self.numeros)
+        )  # sorted devuelve una lista, la convertimos a tupla
 
     def mostrar(self):
         print(self.numeros)

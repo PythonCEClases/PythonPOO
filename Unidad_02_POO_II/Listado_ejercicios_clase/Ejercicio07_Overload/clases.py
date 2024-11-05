@@ -1,17 +1,17 @@
-class Order:
-    def __init__(self, id, order_date, customer, products):
+class Pedido:
+    def __init__(self, id, pedido_date, customer, products):
         self.id = id
-        self.order_date = order_date
+        self.pedido_date = pedido_date
         self.customer = customer
         self.products = products
 
     def __str__(self):
-        return f"Order: {self.id} - Customer: {self.customer} - Nº Products: {len(self.products)}"
+        return f"pedido: {self.id} - Customer: {self.customer} - Nº Products: {len(self.products)}"
 
     def __add__(self, other_product):
         self.products.append(other_product)
 
-    def __subclasses__(self, product):
+    def __sub__(self, product):
         self.products.remove(product)
 
     def __len__(self):
