@@ -9,9 +9,10 @@ mis_vehiculos.add_vehiculo(
 )
 mis_vehiculos.add_vehiculo(Furgoneta("2232LLM", "Renault", "Kangoo", 15000, 1000))
 mis_vehiculos.add_vehiculo(Autobus("9090KSL", "Mercedes", "Tourismo", 120000, 50))
+mis_vehiculos.add_vehiculo(Autobus("9090KSL", "Mercedes", "Tourismo", 120000, 500))
 
 # Buscar x matrícula
-v = mis_vehiculos.buscar_vehiculo_matricula("2232LLM")
+v = mis_vehiculos.buscar_vehiculo_matricula("9090KSL")
 print(v)  # polimorfismo
 
 # Modificar carga furgoneta
