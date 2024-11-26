@@ -1,82 +1,77 @@
-# Definición de clases
-from abc import ABC, abstractmethod
+# Clases del proyecto Sorteo.
 
 
-class Participante:
-    def __init__(self, nombre, apellidos, correo_electronico):
-        self.nombre = nombre
-        self.apellidos = apellidos
-        self.correo_electronico = correo_electronico
+class Sorteo:
 
-    def __str__(self):
-        return f"{self.nombre} {self.correo_electronico}"
-
-    def __eq__(self, otro_participante):
-        return self.correo_electronico == otro_participante.correo_electronico
-
-
-class Premio:
-    def __init__(self, descripcion, valor):
-        self.descripcion = descripcion
-        self.valor = valor
-
-    def __str__(self):
-        return f"{self.descripcion} - {self.valor}"
-
-    def __eq__(self, otro_premio):
-        return (
-            self.descripcion == otro_premio.descripcion
-            and self.valor == otro_premio.valor
-        )
-
-
-class ISorteable(ABC):
-
-    @abstractmethod
-    def add_participante(self, participante):
-        pass
-
-    @abstractmethod
-    def add_premio(self, premio):
-        pass
-
-    @abstractmethod
-    def sortear(self):
-        pass
-
-
-class Sorteo(ISorteable):
     def __init__(self, nombre, fecha):
         self.nombre = nombre
-        self.fecha = fecha
-        self.premios = []
-        self.participantes = {}
+        self.fecha = fecha  # 0       1        2      3        4      5
+        self.participantes = ["Juan", "Pedro", "Luis", "Ana", "Maria", "Pepe"]
+        self.premios = ["Iphone 15", "Viaje a Cancun", "TV 50 pulgadas"]
+        self.sorteo_realizado = False
 
-    def __str__(self):
-        return f"{self.nombre} - {self.fecha}"
-
-    def add_participante(self, participante):
-        if participante.correo_electronico not in self.participantes:
-            self.participantes[participante.correo_electronico] = participante
+    def anadir_participante(self, nuevo_participante):
+        if nuevo_participante not in self.participantes:
+            self.participantes.append(nuevo_participante)
             return True
         return False
 
-    def add_premio(self, premio):
-        if premio not in self.premios:
-            self.premios.append(premio)
+    def anadir_premio(self, nuevo_premio):
+        if nuevo_premio not in self.premios:
+            self.premios.append(nuevo_premio)
             return True
         return False
+
+    def eliminar_participante(self, nombre_participante):
+        self.participantes.remove(nombre_participante)
+
+    def eliminar_premio(self, nombre_premio):
+        self.premios.remove(nombre_premio)
+
+    def listar_participantes(self):
+        print("*****Participantes*****")
+        for p in self.participantes:
+            print(p)
+
+    def listar_premios(self):
+        print("*****Premios*****")
+        for p in self.premios:
+            print(p)
 
     def sortear(self):
+
         import random
 
-        correos_participantes_copia = self.participantes.keys()
-        resultado_sorteo = {}
-        for premio in self.premios:
-            random.shuffle(correos_participantes_copia)
-            numero_participantes = len(correos_participantes_copia)
-            correo_azar = correos_participantes_copia[
-                random.randint(0, numero_participantes)
-            ]
-            resultado_sorteo[correo_azar] = premio
-        return resultado_sorteo
+        diccionario_premios = {}
+        if self.sorteo_realizado == False:
+
+            if len(self.participantes) > len(self.premios) and len(self.premios) > 0:
+                # Sorteo
+                for premio in self.premios:
+                    random.shuffle(self.participantes)  # barajar participantes
+                    numero_azar = random.randint(
+                        0, len(self.participantes) - 1
+                    )  # indice para la lista partic
+                    partipante_premiado = self.participantes[numero_azar]
+                    # print(f"{partipante_premiado} ---> {premio}")
+                    # Introducir pareja participante:premio
+                    diccionario_premios[partipante_premiado] = premio
+                    self.eliminar_participante(partipante_premiado)
+                self.sorteo_realizado = True
+                return diccionario_premios
+            else:
+                return diccionario_premios
+        else:
+            return -1  # sorteo ya realizado
+
+
+class Menu:
+
+    def __init__(self, lista_opciones):
+        self.lista_opciones = lista_opciones
+
+    def mostrar_menu(self):
+        for opcion in self.lista_opciones:
+            print(opcion)
+        opcion = input("Elige opción: ")
+        return opcion
