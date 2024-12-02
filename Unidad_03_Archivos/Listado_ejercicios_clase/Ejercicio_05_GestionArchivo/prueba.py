@@ -1,33 +1,40 @@
 import os
-
 from clases import GestionArchivo
 
-ruta_archivo = os.path.abspath(__file__)
-directorio = os.path.dirname(ruta_archivo)
-archivo_ent = os.path.join(directorio, "operaciones.txt")
+ruta_absoluta = os.path.abspath(__file__)
+directorio = os.path.dirname(ruta_absoluta)
+archivo = os.path.join(directorio, 'operaciones.txt')
 
-# Buscar la cadena 'insert' en el archivo 'operaciones.txt'
-cadena_buscada = "insert"
-result = GestionArchivo.buscar_cadena_archivo(cadena_buscada, archivo_ent)
+# Método 1. Cadena está en archivo
+cadena_buscada = 'update'
+result = GestionArchivo.buscar_cadena(cadena_buscada, archivo)
 if result == -1:
-    print(f'Error al leer el archivo "{archivo_ent}"')
+    print(f'Se ha producido algún error con el archivo')
+elif result:  #True
+    print(f'Cadena {cadena_buscada} encontrada en el archivo {os.path.basename(archivo)}.')
 else:
-    print(
-        f"La cadena '{cadena_buscada}' {'sí' if result else 'no'} se encuentra en el archivo."
-    )
+    print(f'Cadena {cadena_buscada} no encontrada en el archivo {os.path.basename(archivo)}.')
 
-# Contar las repeticiones de la cadena 'update' en el archivo 'operaciones.txt'
-cadena_buscada = "update"
-result = GestionArchivo.contar_repeticiones(cadena_buscada, archivo_ent)
-if result == -1:
-    print(f'Error al leer el archivo "{archivo_ent}"')
-else:
-    print(f"La cadena '{cadena_buscada}' se repite {result} veces en el archivo.")
 
-# Mostrar las líneas que contienen la cadena 'update' en el archivo 'operaciones.txt'
-cadena_buscada = "update"
-result = GestionArchivo.mostrar_cadena_archivo(cadena_buscada, archivo_ent)
+
+# Método 2. Contar repeticiones.
+cadena_buscada = 'delete'
+result = GestionArchivo.contar_repeticiones(cadena_buscada, archivo)
 if result == -1:
-    print(f'Error al leer el archivo "{archivo_ent}"')
+    print(f'Se ha producido algún error con el archivo')
+else: 
+    print(f'La cadena {cadena_buscada} aparece {result} veces en el archivo {os.path.basename(archivo)}.')
+
+
+
+# Método 3. Líneas donde aparece la cadena
+cadena_buscada = 'update'
+result = GestionArchivo.donde_aparece(cadena_buscada, archivo)
+if result == -1:
+    print(f'Se ha producido algún error con el archivo')
+elif len(result)>0: 
+    print(f'La cadena {cadena_buscada} aparece en el archivo {os.path.basename(archivo)} en...')
+    for k,v in result.items():
+        print(f'Línea {k}: {v}')
 else:
-    print(f"Las líneas que contienen la cadena '{cadena_buscada}' son: {result}")
+    print(f'La cadena {cadena_buscada} no aparece en el archivo {os.path.basename(archivo)}')

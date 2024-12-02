@@ -1,33 +1,41 @@
 class GestionArchivo:
 
-    def buscar_cadena_archivo(cadena, archivo):
+    @staticmethod
+    def buscar_cadena(cadena, archivo):
+
         try:
-            with open(archivo, "r") as file:
+            with open(archivo, 'r', encoding='utf8') as file:
                 contenido = file.read()
                 return cadena in contenido
-
-        except FileNotFoundError:
-            return -1  # Archivo no encontrado
-
+            
+        except IOError:
+            return -1 
+        
+    @staticmethod
     def contar_repeticiones(cadena, archivo):
         try:
-            with open(archivo, "r") as file:
+            with open(archivo, 'r', encoding='utf8') as file:
                 contenido = file.read()
                 return contenido.count(cadena)
-
-        except FileNotFoundError:
-            return -1
-
-    def mostrar_cadena_archivo(cadena, archivo):
-
+            
+        except IOError:
+            return -1 
+    
+    @staticmethod
+    def donde_aparece(cadena, archivo):
         try:
-            numero_linea = 1
-            result = {}
-            with open(archivo, "r") as file:
+            
+            with open(archivo, 'r', encoding='utf8') as file:                
+                result = {}
+                num_linea = 1
                 for linea in file:
                     if cadena in linea:
-                        result[numero_linea] = linea.strip()
-                    numero_linea += 1
-            return result
-        except FileNotFoundError:
-            return -1  # Archivo no encontrado
+                        result[num_linea] = linea.strip()   # 1:update_ddasdfasdf
+                    num_linea += 1
+
+                return result              
+
+
+        except IOError:
+            return -1 
+    
