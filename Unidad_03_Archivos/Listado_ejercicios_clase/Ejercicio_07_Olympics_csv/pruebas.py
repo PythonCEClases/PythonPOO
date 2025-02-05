@@ -1,9 +1,10 @@
-import csv, os
+import csv
+import os
 
 from clases import *
 
 directorio = os.path.dirname(os.path.abspath(__file__))
-ruta_archivo = os.path.join(directorio, 'summer_olympic_medals.csv')
+ruta_archivo = os.path.join(directorio, "summer_olympic_medals.csv")
 juegos = GestionJuegos(ruta_archivo)
 
 # Prueba de obtener_datos_pais

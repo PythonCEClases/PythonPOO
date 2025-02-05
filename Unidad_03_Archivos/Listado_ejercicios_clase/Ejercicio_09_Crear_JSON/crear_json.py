@@ -18,8 +18,11 @@ for k,v in datos_pais.items():
     print(f"{k}: {v}")
 
 # Guardar datos del pais en archivo json
-with open(ruta_archivo_sal, 'w') as archivo:
-    json.dump(datos_pais, archivo, indent=4)
+result = crear_json_pais(ruta_archivo_ent, ruta_archivo_sal, codigo_pais)
+if result:
+    print(f"Datos guardados en {os.path.basename(ruta_archivo_sal)}")
+else:
+    print(f"Error al guardar datos en {os.path.basename(ruta_archivo_sal)}")
 
 
 

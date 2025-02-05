@@ -1,0 +1,26 @@
+[
+    {
+        "producto": "tomate",
+        "total": 4500.0
+    },
+    {
+        "producto": "lechuga",
+        "total": 750.0
+    },
+    {
+        "producto": "cebolla",
+        "total": 675.0
+    },
+    {
+        "producto": "pera",
+        "total": 525.0
+    },
+    {
+        "producto": "manzana",
+        "total": 625.0
+    },
+    {
+        "producto": "uva",
+        "total": 7500.0
+    }
+]
