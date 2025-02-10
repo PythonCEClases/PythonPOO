@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+    Recetario de Carlos Aquimaño
+{% endblock%}
+{% block header %}
+    Estas son mis recetas favoritas
+{% endblock %}
+{% block content %}
+    <h1>Recetas</h1>
+        {% for k, v in recetas.items %}
+            <li>Receta número: {{ k }}
+                {% for dato, valor in v.items %}
+                    <ul>
+                        <li>{{ dato|capfirst }}: {{ valor }}</li>
+                    </ul>
+                {% endfor %}
+            </li>
+        {% endfor %}    
+{% endblock %}
+
+<!--
+en la vista se pasa un diccionario con las recetas del autor,
+ recetas = {
+        '1':  {'nombre': 'Tarta de manzana', 'autor': 'Carlos Arquimaño','ingredientes': 'manzana, azúcar, harina, mantequilla', 'preparacion': 'pelar las manzanas, cortarlas y hornearlas'},
+        '2':  {'nombre': 'Huevos rotos con jamón', 'autor': 'Sebas, primo de Carlos Arquimaño', 'ingredientes': 'huevos, jamón, patatas, aceite', 'preparacion': 'freir las patatas, freir los huevos y añadir el jamón'},
+        '3':  {'nombre': 'Tortilla francesa', 'autor': 'Carlos Arquimaño', 'ingredientes': 'huevos, aceite, sal', 'preparacion': 'batir los huevos, freirlos y añadir sal'},
+        '4':  {'nombre': 'Ensalada de pasta', 'autor': 'Carlos Arquimaño', 'ingredientes': 'pasta, tomate, aceitunas, atún', 'preparacion': 'cocer la pasta, añadir el tomate, las aceitunas y el atún'}        
+    }
+    
+    return render(request, 'lista_recetas.html', context= {'recetas': recetas})
+-->

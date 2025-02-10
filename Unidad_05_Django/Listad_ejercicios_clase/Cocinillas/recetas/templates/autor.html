@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+    Autor del blog: Carlos Arquimaño
+{% endblock%}
+{% block header %}
+    Sobre Carlos Arquimaño
+{% endblock %}
+{% block content %}    
+    <h3>Quién es Carlos Arquimaño</h3>
+    <p>Carlos Aquimaño es un cocinero profesional con más de 10 años de experiencia en la cocina. 
+        Ha trabajado en varios restaurantes de prestigio en Tierra de Barros y en el extranjero. 
+        Actualmente, es el chef principal en el restaurante "El Sabor del Ibérico" en Aceuchal.
+        En este blog, Carlos comparte sus recetas favoritas y consejos de cocina con sus seguidores. 
+        ¡Esperamos que disfruten de sus deliciosas recetas!
+    </p>
+    <p>
+        <strong>Sobre Carlos</strong>
+        <br>
+        {{ nombre }}
+        <br>
+        {{ pais }} 
+        <br>
+        {{ ciudad }}
+        <br>
+        {{ estudios }}
+        <br>
+        {% for k, v in datos_autor.items %}
+            {{ k }}: {{ v }}
+        {% endfor %}
+{% endblock %}

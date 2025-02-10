@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+    List of brands
+{% endblock%}
+{% block header %}
+    All brands
+{% endblock %}
+{% block content %}
+    <h3>Bikes by brands</h3>
+        <table>
+            <tr>
+                <th>Brand</th>
+                <th>Number of bikes</th>
+            </tr>
+            {% for brand, counter in data %}
+                <tr>
+                    <td>{{ brand }}</td>
+                    <td>{{ counter }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+{% endblock %}

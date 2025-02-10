@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}
+    CochesNet
+{% endblock%}
+{% block header %}
+    Nuestras marcas.
+{% endblock %}
+
+{% block content %}
+    <h3>Listado de marcas</h3>
+    <table>
+        <tr>
+            <th>Marca</th>
+            <th>País</th>>
+        </tr>
+        {% for marca in marcas %}
+            <tr>
+                <td><a href="{% url 'marca_por_id' marca.id %}"> {{ marca.nombre }} </a></td>                    
+                <td>{{ marca.pais }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Purebikes{% endblock %}</title>    
+</head>
+<body>
+    <h1>
+    {% block header %}
+        Wellcome to Purebikes
+    {% endblock %}
+    </h1>
+    <br/>
+
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'all_bikes' %}">All bikes</a></li>
+        <li><a href="{% url 'brands' %}">Brands</a></li>        
+        <li><a href="{% url 'count_by_brand' %}">Count by brand</a></li>        
+      </ul>
+    <main>
+        {% block content %}
+            <h3>All bikes in this web</h3>
+        {% endblock %}
+    </main>
+</body>

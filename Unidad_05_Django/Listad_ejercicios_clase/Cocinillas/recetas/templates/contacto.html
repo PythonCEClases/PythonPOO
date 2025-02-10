@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+    Autor del blog: Carlos Aquimaño
+{% endblock%}
+{% block header %}
+    Datos de contacto de Carlos Arquimaño
+{% endblock %}
+{% block content %}    
+    <h3>Datos de contacto de Carlos Arquimaño</h3>
+    <p>Si quieres ponerte en contacto con Carlos Aquimaño, puedes hacerlo a través de los siguientes medios:</p>
+    <ul>
+        <li>Teléfono: {{ telefono }}</li>
+        <li>Redes sociales:
+            <a href="{{ facebook }}"
+                target="_blank">Facebook</a>,
+            <a href="{{ x }}"
+                target="_blank">X</a>,
+            <a href="{{ instagram }}"
+                target="_blank">Instagram</a>
+{% endblock %}

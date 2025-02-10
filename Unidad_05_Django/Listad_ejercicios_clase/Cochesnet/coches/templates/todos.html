@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+    CochesNet
+{% endblock%}
+{% block header %}
+    Todos nuestros coches.
+{% endblock %}
+
+{% block content %}
+    <h3>Listado de coches</h3>
+    <table>
+        <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Precio</th>
+            <th>Potencia</th>
+            <th>Color</th>
+        </tr>
+        {% for coche in coches %}
+            <tr>
+                <td>{{ coche.marca }}</td>
+                <td>{{ coche.modelo }}</td>
+                <td>{{ coche.precio }}</td>
+                <td>{{ coche.potencia }}</td>
+                <td>{{ coche.color }}</td>
+            </tr>
+        {% endfor %}
+{% endblock %}
