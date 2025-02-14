@@ -1,0 +1,42 @@
+{% extends 'books/base.html' %}
+{% block title %}
+    New book
+{% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1>{{ rotulo }}</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">            
+            <br>
+            <form method="post" class="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form | crispy}}
+                <input type="submit" value="Guardar" class="btn btn-dark">
+                <a href="{% url 'list_books' %}"><button type="button" class="btn btn-secondary">Cancel</button></a>                  
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    Cover image
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    {% if book.cover %}
+                        <img src="{{ book.cover.url }}" alt="Imagen de {{ book.title }}" class = "img-fluid img-thumbnail" width="300"></td>
+                    {% else %}
+                        ...
+                    {% endif %}        
+                </div>            
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

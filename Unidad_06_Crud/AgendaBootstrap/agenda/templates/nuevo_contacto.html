@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    Añadir contacto
+{% endblock%}
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    {% load crispy_forms_tags %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>{{ accion }}</h3>
+                <form method="post" class="form">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input type="submit" value="Guardar" class="btn btn-dark">                    
+                    <a href="{% url 'listar_contactos' %}"><button type="button" class="btn btn-secondary">Cancel</button></a>                   
+                                
+                </form>
+            </div>
+        </div>
+    
+{% endblock %}

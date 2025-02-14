@@ -1,0 +1,81 @@
+{% extends 'books/base.html' %}
+
+
+{% block title %}
+    List of books
+{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <h1>List of books</h1>
+                <br>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Price</th>
+                        <th>Publisher</th>
+                        <th>Release date</th>
+                        <th>Cover</th>
+                        <th>Actions</th>
+                    </tr>
+                    {% for book in books %}
+                        <tr>
+                            <td>{{ book.title }}</td>
+                            <td>{{ book.author }}</td>
+                            <td>{{ book.price }}</td>
+                            <td>{{ book.publisher }}</td>
+                            <td>{{ book.release_date }}</td>                            
+                            <td>
+                                {% if book.cover %}
+                                    <img src="{{ book.cover.url }}"  
+                                        class = "img-fluid img-thumbnail" width="50">
+                                {% else %}
+                                    ...
+                                {% endif %}</td>
+                            <td>
+                                <a href="{% url 'edit_book' book.id %}" class="btn btn-dark">Edit</a>
+                                <a href="{% url 'delete_book' book.id %}" class="btn btn-danger">Delete</a>
+                                <!-- Botón para abrir el modal -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal-{{book.id}}"> 
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+
+                        <div class="modal fade" id="eliminarModal-{{book.id}}" tabindex="-1" aria-labelledby="eliminarModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="eliminarModalLabel">Confirmar Eliminación</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                      Are you sure to delete the book <strong>{{ book.title }}?</strong>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                      <form id="eliminarForm" method="POST" action="{% url 'delete_book' book.id %}">
+                                          {% csrf_token %}
+                                          <button type="submit" class="btn btn-danger">Eliminar</button>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+
+
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+  
+  <!-- Modal -->
+  
+          
+{% endblock %}

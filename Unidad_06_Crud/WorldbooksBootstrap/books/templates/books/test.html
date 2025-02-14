@@ -1,0 +1,18 @@
+{% extends 'books/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    List of books
+{% endblock%}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="test">List of books</h1>
+                {% comment %} <img src="{% static 'images/books.webp' %}" alt="Books" class="img-fluid" width="300">                 {% endcomment %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

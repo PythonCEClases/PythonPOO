@@ -1,0 +1,57 @@
+
+{% extends 'categorias/base.html' %}
+
+
+{% block title %}
+    Lista de productos
+{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <h1>Productos</h1>
+                <br>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Categoría</th>
+                    </tr>
+                    {% for pro in productos %}
+                        <tr>
+                            <td>{{ pro.nombre }}</td>
+                            <td>{{ pro.descripcion }}</td>
+                            <td>{{ pro.precio }}</td>
+                            <td>{{ pro.categoria }}</td>
+                            
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                        {% endif %}
+                        <span class="current">
+                            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                        {% endif %}
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+          
+{% endblock %}

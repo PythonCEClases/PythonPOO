@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Nuevo lugar
+{% endblock%}
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    {% load crispy_forms_tags %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6  col-md-12 col-lg-12">
+                <br>
+                <h3>Detalle</h3>
+                    <table class="table">
+                        <tr>
+                            <th>Nombre</th>
+                            <td>{{ lugar.nombre }}</td>
+                            <td rowspan="5">
+                                <img src="{{ lugar.imagen.url }}" alt="{{ lugar.nombre }}" class = "img-fluid img-thumbnail"  width="600">                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Descripción</th>
+                            <td>{{ lugar.descripcion }}</td>
+                        </tr>
+                        <tr>
+                            <th>País</th>
+                            <td>{{ lugar.pais }}</td>
+                        </tr>
+                        <tr>
+                            <th>Localización</th>
+                            <td>{{ lugar.localizacion }}</td>
+                        </tr>
+                        <tr>
+                            <th>Tipo</th>
+                            <td>{{ lugar.tipo }}</td>
+                        </tr>
+            </div>
+        </div>
+    
+{% endblock %}

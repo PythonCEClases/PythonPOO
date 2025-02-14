@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}
+    New book
+{% endblock %}
+{% block content %}
+<h1>{{ rotulo }}</h1>
+<br>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Guardar">
+    <a href="{% url 'list_books' %}"><button type="button">Cancel</button></a>  
+</form>
+{% endblock %}

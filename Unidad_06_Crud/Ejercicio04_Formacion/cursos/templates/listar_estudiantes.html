@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+    Listado de contactos
+{% endblock%}
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <h3>Estudiantes</h3>
+                <table class="table">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Accciones</th>
+                    </tr>
+                        {% for e in estudiantes %}
+                            <tr>
+                                <td>{{ e.nombre }}</td>
+                                <td>{{ e.apellidos }}</td>
+                                <td>{{ e.correo }}</td>
+                                <td>{{ e.telefono }}</td>
+                                <td>
+                                    <a href="{% url 'cursos_estudiante' e.id %}" class="btn btn-secondary">Ver cursos</a>                                    
+                                </td>                                
+                                <td>
+                                    <a href="{% url 'editar_estudiante' e.id %}" class="btn btn-secondary">Editar</a>                                    
+                                </td>                                
+                            </tr>
+                        {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

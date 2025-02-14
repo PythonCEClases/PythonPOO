@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>    
+</head>
+<body>
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'list_books' %}">List of books</a></li>
+        <li><a href="{% url 'new_book' %}">New book</a></li>
+    </ul>
+    {% block content %}
+    {% endblock %}
+
+</body>

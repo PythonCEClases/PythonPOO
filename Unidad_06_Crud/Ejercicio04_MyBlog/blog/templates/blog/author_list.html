@@ -1,0 +1,52 @@
+
+{% extends 'blog/base.html' %}
+
+
+{% block title %}
+    Post list
+{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <h1>Authors</h1>
+                <br>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>                        
+                    </tr>
+                    {% for author in authors %}
+                        <tr>
+                            <td><a href="{% url 'edit_author' author.id %}">{{ author.name }}</a></td>
+                            <td>{{ author.email }}</td>                           
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    {% comment %} <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                        {% endif %}
+                        <span class="current">
+                            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                        {% endif %}
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div> {% endcomment %}
+          
+{% endblock %}

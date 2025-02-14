@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Lugares del mundo
+{% endblock%}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <br>
+                <h3>Lugares del mundo</h3>
+                <table class="table">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>País</th>
+                        <th>Localización</th>
+                        <th>Tipo</th>
+                        <th>Acciones</th>
+                    </tr>
+                        {% for lugar in lugares %}
+                            <tr>
+                                <td>{{ lugar.nombre }}</td>
+                                <td>{{ lugar.descripcion }}</td>
+                                <td>{{ lugar.pais }}</td>
+                                <td>{{ lugar.localizacion }}</td>
+                                <td>{{ lugar.tipo }}</td>
+                                <td><a href="{% url 'detalle_lugar' lugar.id %}" class="btn btn-secondary">Detalle</a></td> 
+                            </tr>
+                        {% endfor %}        
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

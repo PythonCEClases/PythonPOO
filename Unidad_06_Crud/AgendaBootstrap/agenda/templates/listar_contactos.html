@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+    Listado de contactos
+{% endblock%}
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <br>
+                <h3>Listado de contactos</h3>
+                <table class="table">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Accciones</th>
+                    </tr>
+                        {% for contacto in contactos %}
+                            <tr>
+                                <td>{{ contacto.nombre }}</td>
+                                <td>{{ contacto.apellidos }}</td>
+                                <td>{{ contacto.telefono }}</td>
+                                <td>{{ contacto.email }}</td>
+                                <td><a href="{% url 'editar_contacto' contacto.id %}" class="btn btn-secondary">Editar</a>
+                                <a href="{% url 'eliminar_contacto' contacto.id %}" class="btn btn-danger">Eliminar</a></td>
+                                <!--onclick="return confirm('Are you sure you want to delete?')"-->
+                            </tr>
+                        {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

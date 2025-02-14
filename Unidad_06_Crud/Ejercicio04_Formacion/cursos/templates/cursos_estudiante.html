@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}
+    Listado de contactos
+{% endblock%}
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <h3>Estudiante</h3>
+                <table class="table table-striped table-primary">
+                    <tr>
+                        <th>Nombre</th>
+                        <td colspan=3>{{ estudiante.nombre }} {{ estudiante.apellido }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td colspan=3>{{ estudiante.correo }}</td>
+                    </tr>
+                    <tr>
+                        <th>Teléfono</th>
+                        <td colspan=3>{{ estudiante.telefono }}</td>
+                    </tr>
+                </table>
+                <br>
+                <table class="table table-striped table-dark">
+                    <tr>
+                        <th class="text-center" colspan=5>Cursos en los que se matriculó</th>
+                    </tr>      
+                    <tr>
+                        <th>Curso</th>
+                        <th>Fecha de inicio</th>
+                        <th>Fecha de fin</th>
+                        <th>Temática</th>
+                        <th>Acciones</th>
+                    </tr>
+                    {% for curso in estudiante.cursos.all %}
+                        <tr>
+                            <td>{{ curso.nombre }}</td>
+                            <td>{{ curso.fecha_inicio }}</td>
+                            <td>{{ curso.fecha_fin }}</td>
+                            <td>{{ curso.tematica }}</td>      
+                            <td>
+                                <a href="{% url 'eliminar_curso_estudiante' estudiante.id curso.id %}" class="btn btn-danger">Eliminar matrícula</a>  
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}

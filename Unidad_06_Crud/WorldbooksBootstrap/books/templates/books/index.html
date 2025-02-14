@@ -1,0 +1,26 @@
+{% extends 'books/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    List of books
+{% endblock%}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="test">Web of books</h1>
+                
+                <img src="{% static 'images/books.webp' %}" alt="Books" class="img-fluid" width="300">                
+
+                {% if user.is_authenticated %}
+                    <p>Bienvenido, {{ user.username }}</p>
+                {% else %}
+                    <p>No has iniciado sesión.</p>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
